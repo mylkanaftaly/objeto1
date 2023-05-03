@@ -45,6 +45,49 @@ buttonLeft.addEventListener("click", () =>{
     document.getElementById("name").innerHTML = reviews[i].name
     
 })
+const author = document.getElementById('autor');
+const job = document.getElementById('job');
+const image = document.getElementById('image-profile');
+const information = document.getElementById('description');
+
+const prevButton = document.querySelector('.prev-button');
+const nextButton = document.querySelector('.next-button');
+const randomButton = document.querySelector('.random-button');
+
+let currentItem = 0
+
+function showPerson(person){
+    const item = reviews[person]
+    image.src = item.image
+    author.textContent = item.name
+    job.textContent = item.job
+    information.textContent = item.text
+}
+
+nextButton.addEventListener('click', () => {
+    currentItem++
+
+    if(currentItem > reviews.length -1){
+        currentItem = 0
+    }
+
+    showPerson(currentItem)
+})
+
+prevButton.addEventListener('click', () => {
+    currentItem--
+
+    if(currentItem < 0){
+        currentItem = reviews.length - 1
+    }
+
+    showPerson(currentItem)
+})
+
+randomButton.addEventListener('click', () => {
+    const randomPerson = Math.floor(Math.random() * reviews.length)
+    showPerson(randomPerson)
+})
 
 
 
